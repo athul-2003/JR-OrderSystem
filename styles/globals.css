@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary-font: 'Helvetica Neue', Arial, sans-serif;
+  --primary-color: #4CAF50;
+  --secondary-color: #f0f0f0;
+  --input-border-color: #ccc;
+  --input-focus-border-color: #4CAF50;
+  --highlight-color: #fff9c4; /* Lighter yellow color */
+  --button-hover-color: #388E3C; /* Darker shade of primary color */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+  font-family: var(--primary-font);
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.LogoTitle{
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.logo-img{
+  border-radius: 50%;
+  color: transparent;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0;
+  color: var(--primary-color);
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+p {
+  margin: 10px 0;
+}
+
+.instructions {
+  background-color: var(--highlight-color);
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: justify;
+  font-style: italic;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  border-color: var(--input-focus-border-color);
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: auto;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--button-hover-color);
+  transform: scale(1.05);
+}
+
+.SelectRow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.add-button {
+  margin-left: 5px;
+}
+
+.DropDownMenu {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.ProductSelect {
+  margin-right: 5px;
+}
+
+.AddProduct {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.individual-product{
+  display: flex;
+    gap: 15px;
+}
+.OrderSummary-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .SelectRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-button,
+  .DropDownMenu,
+  .ProductSelect {
+    margin: 5px 0;
+    width: 100%;
+  }
+}
