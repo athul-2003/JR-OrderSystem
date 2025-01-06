@@ -34,36 +34,33 @@ export default function Home() {
       items: orderItems,
     };
 
-    // ...existing code...
-try {
-  const response = await fetch('/api/order', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(order),
-  });
+    try {
+      const response = await fetch('/api/submit-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+      });
 
-  const data = await response.json();
+      const data = await response.json();
 
-  if (response.ok) {
-    setOrderStatus('success');
-    setStatusMessage(data.message);
-    setOrderItems([]);
-    setCustomerName('');
-    setCustomerEmail('');
-    setCustomerPhone('');
-    setCustomerAddress('');
-  } else {
-    setOrderStatus('error');
-    setStatusMessage(data.message);
-  }
-} catch (error) {
-  console.error(error);
-  setOrderStatus('error');
-  setStatusMessage('An error occurred while processing your order.');
-}
-// ...existing code...
+      if (response.ok) {
+        setOrderStatus('success');
+        setStatusMessage(data.message);
+        setOrderItems([]);
+        setCustomerName('');
+        setCustomerEmail('');
+        setCustomerPhone('');
+        setCustomerAddress('');
+      } else {
+        setOrderStatus('error');
+        setStatusMessage(data.message || 'An error occurred while submitting the order.');
+      }
+    } catch (error) {
+      setOrderStatus('error');
+      setStatusMessage('An error occurred while submitting the order. Please try again.');
+    }
   };
 
   return (
@@ -154,7 +151,7 @@ try {
       {orderStatus === 'success' && (
         <div className="success-message">
         <p className="font-bold mb-2">Order Submitted Successfully</p>
-        <p>Thank you for your order. What happens next:</p>
+        <p>Thank you for your order. Here’s what happens next:</p>
         <ol className="list-decimal list-inside mt-2">
           <li>You will receive a confirmation email shortly.</li>
           <li>Our team will process your order within the next 24 hours.</li>
