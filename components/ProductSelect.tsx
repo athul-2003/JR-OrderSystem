@@ -19,7 +19,7 @@ export default function ProductSelect({ onSelect }: ProductSelectProps) {
   };
 
   return (
-    <div className="flex flex-col space-y-2 SelectRow">
+    <div className="flex   space-y-2 SelectRow">
       <select
         className="border p-2 rounded ProductSelect"
         value={selectedProduct?.id || ''}
@@ -43,7 +43,7 @@ export default function ProductSelect({ onSelect }: ProductSelectProps) {
 <button
   onClick={handleAddProduct}
   disabled={!selectedProduct || quantity < 1}
-  className="bg-blue-500 text-white p-2 rounded disabled:bg-gray-300 add-button"
+  className=" text-white p-2 rounded  add-button"
 >
   Add to Order
 </button>

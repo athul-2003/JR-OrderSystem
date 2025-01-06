@@ -2,37 +2,12 @@ import { NextResponse } from 'next/server';
 import { Order } from '@/lib/types';
 import { sendEmail } from '@/lib/emailService';
 
-function generateCustomerEmail(order: Order): { html: string; text: string } {
-  const itemsDetailsHTML = order.items
-    .map(
-      (item) =>
-        `<li>${item.product.name} (Quantity: ${item.quantity})</li>`
-    )
-    .join('');
+function generateCustomerEmail(order: Order): string {
+  const itemsDetails = order.items.map(item => `
+    - ${item.product.name} (Quantity: ${item.quantity})
+  `).join('\n');
 
-  const itemsDetailsText = order.items
-    .map(
-      (item) => `- ${item.product.name} (Quantity: ${item.quantity})`
-    )
-    .join('\n');
-
-  const html = `
-    <p>Dear ${order.customerName},</p>
-    <p>Thank you for your order with <strong>JR Medicare</strong>! Below are the details of your order:</p>
-    <h3>Order Details:</h3>
-    <ul>
-      <li><strong>Email:</strong> ${order.customerEmail}</li>
-      <li><strong>Phone:</strong> ${order.customerPhone}</li>
-      <li><strong>Address:</strong> ${order.customerAddress}</li>
-    </ul>
-    <h3>Items Ordered:</h3>
-    <ul>${itemsDetailsHTML}</ul>
-    <p>We appreciate your business and look forward to serving you again soon!</p>
-    <p>Best regards,<br>JR Medicare Team</p>
-    <p><em>Note: An invoice will be sent to your email with payment information shortly.</em></p>
-  `;
-
-  const text = `
+  return `
     Dear ${order.customerName},
 
     Thank you for your order with JR Medicare! Below are the details of your order:
@@ -43,7 +18,7 @@ function generateCustomerEmail(order: Order): { html: string; text: string } {
     - Address: ${order.customerAddress}
 
     Items Ordered:
-    ${itemsDetailsText}
+    ${itemsDetails}
 
     We appreciate your business and look forward to serving you again soon!
 
@@ -52,39 +27,14 @@ function generateCustomerEmail(order: Order): { html: string; text: string } {
 
     Note: An invoice will be sent to your email with payment information shortly.
   `;
-
-  return { html, text };
 }
 
-function generateCompanyEmail(order: Order): { html: string; text: string } {
-  const itemsDetailsHTML = order.items
-    .map(
-      (item) =>
-        `<li>${item.product.name} (Quantity: ${item.quantity})</li>`
-    )
-    .join('');
+function generateCompanyEmail(order: Order): string {
+  const itemsDetails = order.items.map(item => `
+    - ${item.product.name} (Quantity: ${item.quantity})
+  `).join('\n');
 
-  const itemsDetailsText = order.items
-    .map(
-      (item) => `- ${item.product.name} (Quantity: ${item.quantity})`
-    )
-    .join('\n');
-
-  const html = `
-    <p><strong>New Order Received</strong></p>
-    <h3>Customer Details:</h3>
-    <ul>
-      <li><strong>Name:</strong> ${order.customerName}</li>
-      <li><strong>Email:</strong> ${order.customerEmail}</li>
-      <li><strong>Phone:</strong> ${order.customerPhone}</li>
-      <li><strong>Address:</strong> ${order.customerAddress}</li>
-    </ul>
-    <h3>Items Ordered:</h3>
-    <ul>${itemsDetailsHTML}</ul>
-    <p>Please process the order as soon as possible.</p>
-  `;
-
-  const text = `
+  return `
     New Order Received
 
     Customer Details:
@@ -94,12 +44,10 @@ function generateCompanyEmail(order: Order): { html: string; text: string } {
     - Address: ${order.customerAddress}
 
     Items Ordered:
-    ${itemsDetailsText}
+    ${itemsDetails}
 
     Please process the order as soon as possible.
   `;
-
-  return { html, text };
 }
 
 export async function POST(request: Request) {
@@ -108,19 +56,11 @@ export async function POST(request: Request) {
   const companyEmailContent = generateCompanyEmail(order);
 
   // Send email to customer
-  await sendEmail(
-    order.customerEmail,
-    'Your Order Confirmation - JR Medicare',
-    customerEmailContent.text
-  );
+  await sendEmail(order.customerEmail, 'Your Order Confirmation - JR Medicare', customerEmailContent);
 
   // Send email to company
   const companyEmail = 'hathulkrishnanvastgcsj@gmail.com'; // Replace with the company's email address
-  await sendEmail(
-    companyEmail,
-    'New Order Received - JR Medicare',
-    companyEmailContent.text
-  );
+  await sendEmail(companyEmail, 'New Order Received - JR Medicare', companyEmailContent);
 
   return NextResponse.json({ message: 'Order submitted successfully' });
 }

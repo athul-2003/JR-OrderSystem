@@ -147,14 +147,22 @@ button:hover {
 
 .ProductSelect {
   margin-right: 5px;
+  margin-top: 8px;
 }
 
-.AddProduct {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
+.AddProducts-section{
+margin-bottom: 15px;
+/* padding: 8px; */
 }
+
+
+.AddProducts-section h2{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
 .individual-product{
   display: flex;
     gap: 15px;
