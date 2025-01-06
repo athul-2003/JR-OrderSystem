@@ -295,7 +295,7 @@ export default function Home() {
             <li>Fill in all required customer information.</li>
             <li>Add products to your order using the dropdown and quantity field.</li>
             <li>Review your order summary before submitting.</li>
-            <li>Click "Place Order" to submit your order and wait for confirmation message.</li>
+            <li>Click &quot;Place Order&quot; to submit your order and wait for confirmation message.</li>
             <li>You will receive a confirmation email once your order is processed.</li>
           </ul>
         </div>
@@ -322,7 +322,7 @@ export default function Home() {
       {orderStatus === 'success' && (
         <div className="success-message">
           <p className="font-bold mb-2">Order Submitted Successfully</p>
-          <p>Thank you for your order. Here’s what happens next:</p>
+          <p>Thank you for your order. What happens next:</p>
           <ol className="list-decimal list-inside mt-2">
             <li>You will receive a confirmation email shortly.</li>
             <li>Our team will process your order within the next 24 hours.</li>
