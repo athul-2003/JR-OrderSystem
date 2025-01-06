@@ -329,7 +329,8 @@ export default function Home() {
             <li>You will receive another email with invoice and payment information.</li>
             <li>If you have any questions or need further assistance, please do not hesitate to contact us</li>
           </ol>
-          <p>Best regards,<br />JR Medicare Team</p>
+          <p>Best regards,&quot;<br />JR Medicare Team</p>
+
         </div>
       )}
       {orderStatus === 'error' && (
