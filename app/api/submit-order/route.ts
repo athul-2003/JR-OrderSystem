@@ -20,12 +20,10 @@ function generateCustomerEmail(order: Order): string {
     Items Ordered:
     ${itemsDetails}
 
-    We appreciate your business and look forward to serving you again soon!
+    Our sales team will contact you shortly to confirm the order and provide payment details.
 
     Best regards,
-    JR Medicare Team
-
-    Note: An invoice will be sent to your email with payment information shortly.
+    JR Medicare
   `;
 }
 
